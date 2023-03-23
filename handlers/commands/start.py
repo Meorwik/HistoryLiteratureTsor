@@ -1,8 +1,6 @@
-from data.lesson_material.lesson_materials import questions, greeting_msg
-from keyboards.inline.inline_keyboards import KeyboardCreator
-from aiogram.dispatcher.filters.builtin import CommandStart
-from handlers.users.quiz import start_quiz
 from keyboards.default.default_keyboard import create_agreement_keyboard
+from data.lesson_material.lesson_materials import greeting_msg
+from aiogram.dispatcher.filters.builtin import CommandStart
 from states.states import StateGroup
 from aiogram import types
 from loader import dp

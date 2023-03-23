@@ -6,3 +6,8 @@ async def create_agreement_keyboard():
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(agree_button)
     return keyboard
 
+
+async def finished_exercise():
+    finished_button = KeyboardButton("Я завершил(а) задание !")
+    keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(finished_button)
+    return keyboard
