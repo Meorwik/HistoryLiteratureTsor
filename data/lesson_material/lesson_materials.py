@@ -113,12 +113,6 @@ tenth_question = {
         }
 }
 
-greeting_msg = \
-    """
-Меня зовут Папирус. Я являюсь ботом, который поможет тебе в изучении мифологии Древней Греции.\n
-Приглашаю тебя в путешествие!
-    """
-
 arcadia = \
     """
 Считается, что Древняя Аркадия или Аркадес – город, построенный вблизи деревни Афрати. 
@@ -158,6 +152,12 @@ stimfal = \
 Источник: http://wiki-org.ru/wiki/%D0%A1%D1%82%D0%B8%D0%BC%D1%84%D0%B0%D0%BB_(%D0%B3%D0%BE%D1%80%D0%BE%D0%B4)
     """
 
+greeting_msg = \
+    """
+Меня зовут Папирус. Я являюсь ботом, который поможет тебе в изучении мифологии Древней Греции.\n
+Приглашаю тебя в путешествие!
+    """
+
 quiz_introduction = \
     """
 Думаю, что ты знаешь одного из известных героев Греции. 
@@ -173,6 +173,16 @@ additional_info = \
 https://teremok.in/Mifologija/Mifi_gretsii.htm
 https://www.youtube.com/watch?v=Yz93dQp3k3Y&feature=youtu.be
     """
+
+second_part_intro = \
+    """
+    А сейчас мы переходим к следующей части урока\n
+    https://learningapps.org/20806237\n
+    Пройди задание по этой ссылке и нажми на кнопку по завершению.
+    """
+
+bad_rating = "Неплохо, но ты можешь лучше !"
+good_rating = "Это очень хороший результат !\nТы молодец!"
 
 quiz_questions = \
     {
@@ -194,4 +204,15 @@ greece_cities_info = \
         "stimfal": stimfal,
         "arcadia": arcadia,
         "lerna": lerna
+    }
+
+texts = \
+    {
+        "quiz_introduction": quiz_introduction,
+        "learn_phase_start": learn_phase_start,
+        "additional_info": additional_info,
+        "greeting_msg": greeting_msg,
+        "second_part_intro": second_part_intro,
+        "bad_rating": bad_rating,
+        "good_rating": good_rating
     }

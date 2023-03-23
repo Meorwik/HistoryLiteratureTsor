@@ -1,10 +1,7 @@
-from aiogram import Dispatcher
 from data.config.config import ADMINS
+from aiogram import Dispatcher
 
 
 async def on_startup_notify(dp: Dispatcher):
     for admin in ADMINS:
-        try:
-            await dp.bot.send_message(admin, "Бот запущен!")
-        except Exception as err:
-            logging.exception(err)
+        await dp.bot.send_message(admin, "Бот запущен!")

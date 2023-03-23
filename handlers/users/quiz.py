@@ -1,4 +1,4 @@
-from data.lesson_material.lesson_materials import quiz_introduction, quiz_questions
+from data.lesson_material.lesson_materials import texts, quiz_questions
 from keyboards.default.default_keyboard import finished_exercise
 from keyboards.inline.inline_keyboards import KeyboardCreator
 from aiogram.dispatcher import FSMContext
@@ -7,17 +7,39 @@ from loader import dp, bot
 from aiogram import types
 
 
-@dp.message_handler(lambda message: message.text and 'Да, я готов(а) !' in message.text, state=StateGroup.in_quiz)
-async def start_quiz(message: types.Message, state: FSMContext):
+async def send_question_with_photo(message: types.Message, num: int, question_number):
+    await message.delete()
+    photo = open(f"data/pictures/{num}.jpg", "rb")
+    keyboard = KeyboardCreator().create_keyboard(quiz_questions[question_number])
+    await message.answer_photo(photo, quiz_questions[question_number]["question"], reply_markup=keyboard)
+    photo.close()
 
-    keyboard = KeyboardCreator()
-    await message.answer(quiz_introduction)
-    await message.answer(quiz_questions["1"]["question"], reply_markup=keyboard.create_keyboard(quiz_questions["1"]))
+
+async def rate_student(message: types.Message, points: int):
+    await message.answer(text=f"Пройдя викторину, ты набрал: {points}/10 баллов")
+
+    if points <= 6:
+        await message.answer(texts["bad_rating"])
+    elif points > 6:
+        await message.answer(texts["good_rating"])
+
+
+async def message_filter(message: types.Message):
+    return 'Да, я готов(а) !' in message.text
+
+
+@dp.message_handler(message_filter, state=StateGroup.in_quiz)
+async def start_quiz(message: types.Message, state: FSMContext):
+    await message.answer(texts["quiz_introduction"])
+    await message.answer\
+        (
+            text=quiz_questions["1"]["question"],
+            reply_markup=KeyboardCreator().create_keyboard(quiz_questions["1"])
+        )
 
     async with state.proxy() as data:
         data["points"] = 0
         data["question_number"] = 1
-        data["keyboard"] = keyboard
 
 
 @dp.callback_query_handler(state=StateGroup.in_quiz)
@@ -33,37 +55,26 @@ async def handle_quiz_callbacks(call: types.CallbackQuery, state: FSMContext):
             data["question_number"] += 1
 
     async with state.proxy() as data:
-        question_number = data["question_number"]
-        if question_number <= 10:
-            question_data = quiz_questions[str(question_number)]
-            keyboard = KeyboardCreator().create_keyboard(question_data)
-            if question_number == 2:
-                await bot.delete_message(message_id=call.message.message_id-1, chat_id=call.from_user.id)
-                await call.message.delete()
-                photo = open("data/pictures/1.jpg", "rb")
-                await bot.send_photo(photo=photo, caption=quiz_questions[str(question_number)]["question"], reply_markup=keyboard, chat_id=call.from_user.id)
-                photo.close()
-            elif question_number == 4:
-                await call.message.delete()
-                photo = open("data/pictures/2.jpg", "rb")
-                await bot.send_photo(photo=photo, caption=quiz_questions[str(question_number)]["question"], reply_markup=keyboard, chat_id=call.from_user.id)
-                photo.close()
-            elif question_number == 7:
-                await call.message.delete()
-                photo = open("data/pictures/3.jpg", "rb")
-                await bot.send_photo(photo=photo, caption=quiz_questions[str(question_number)]["question"], reply_markup=keyboard, chat_id=call.from_user.id)
-                photo.close()
+        question_number = str(data["question_number"])
+        if int(question_number) <= 10:
+
+            if question_number == "2":
+                await bot.delete_message(chat_id=call.from_user.id, message_id=call.message.message_id-1)
+                await send_question_with_photo(call.message, 1, question_number)
+
+            elif question_number == "4":
+                await send_question_with_photo(call.message, 2, question_number)
+
+            elif question_number == "7":
+                await send_question_with_photo(call.message, 3, question_number)
+
             else:
                 await call.message.delete()
-                await bot.send_message(chat_id=call.from_user.id, text=quiz_questions[str(question_number)]["question"], reply_markup=keyboard)
+                keyboard = KeyboardCreator().create_keyboard(quiz_questions[question_number])
+                await call.message.answer(quiz_questions[question_number]["question"], reply_markup=keyboard)
 
         else:
             await call.message.delete()
-            await bot.send_message(call.from_user.id, text=f"Пройдя викторину, ты набрал: {data['points']}/10 баллов")
-            if data['points'] <= 6:
-                await bot.send_message(call.from_user.id, text="Неплохо, но ты можешь лучше !")
-            elif data["points"] > 6:
-                await bot.send_message(call.from_user.id, text="Это очень хороший результат !\nТы молодец!")
-
-            await bot.send_message(call.from_user.id, text="А сейчас мы переходим к следующей части урока\nhttps://learningapps.org/20806237\nПройди задание по этой ссылке и нажми на кнопку по завершению.", reply_markup=await finished_exercise())
+            await rate_student(call.message, data["points"])
+            await call.message.answer(texts["second_part_intro"], reply_markup=await finished_exercise())
             await StateGroup.in_learning.set()

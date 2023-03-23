@@ -5,8 +5,6 @@ from aiogram import types
 CORRECT_ANSWER_CALLBACK = "CORRECT"
 INCORRECT_ANSWER_CALLBACK = "INCORRECT"
 
-callbacks = [CORRECT_ANSWER_CALLBACK, INCORRECT_ANSWER_CALLBACK]
-
 
 class KeyboardCreator:
     def __init__(self):
