@@ -166,8 +166,6 @@ learn_phase_start = "А сейчас давай познакомимся с ис
 additional_info = \
     """
 А теперь познакомимся с ниже приведенными источниками:\n
-https://teremok.in/Mifologija/Mifi_gretsii.htm
-https://www.youtube.com/watch?v=Yz93dQp3k3Y&feature=youtu.be
     """
 
 second_part_intro = \
