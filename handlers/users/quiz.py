@@ -30,7 +30,7 @@ async def message_filter(message: types.Message):
 
 @dp.message_handler(message_filter, state=StateGroup.in_quiz)
 async def start_quiz(message: types.Message, state: FSMContext):
-    photo = open("data/pictures/quize_start.jpg","rb")
+    photo = open("data/pictures/quize_start.jpg", "rb")
     await message.answer_photo(photo=photo)
     await message.answer\
         (
@@ -80,5 +80,6 @@ async def handle_quiz_callbacks(call: types.CallbackQuery, state: FSMContext):
             await rate_student(call.message, data["points"])
             second_part_photo = open("data/pictures/second_part.jpg", "rb")
             await call.message.answer_photo(photo=second_part_photo, caption=texts["second_part_intro"], reply_markup=await finished_exercise())
+            await call.message.answer("Если ты испытал затруднения, ты можешь перечитать мифы.")
             await StateGroup.in_learning.set()
             second_part_photo.close()
