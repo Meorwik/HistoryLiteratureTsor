@@ -46,10 +46,11 @@ def create_city_source_button(name):
 
 def create_link_buttons():
     keyboard = InlineKeyboardMarkup(row_width=1)
-    cartoon_1_button = InlineKeyboardButton("Мультфильм", url="https://youtu.be/QsK3fxALfU8")
+    cartoon_1_button = InlineKeyboardButton("Мультфильм о Геракле", url="https://youtu.be/QsK3fxALfU8")
     cartoon_2_button = InlineKeyboardButton("11 подвиг Геракла", url="https://www.youtube.com/watch?v=Yz93dQp3k3Y&feature=youtu.be")
     mify_button = InlineKeyboardButton("Мифы Древней Греции", url="https://teremok.in/Mifologija/Mifi_gretsii.htm")
-    keyboard.add(cartoon_1_button, cartoon_2_button, mify_button)
+    phrases_dictionary = InlineKeyboardButton("Фразеологизмы из мифологии", url="https://gufo.me/dict/fedorov")
+    keyboard.add(cartoon_1_button, cartoon_2_button, mify_button, phrases_dictionary)
     return keyboard
 
 

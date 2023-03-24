@@ -9,5 +9,7 @@ from loader import dp
 @dp.message_handler(CommandStart(), state="*")
 async def bot_start(message: types.Message):
     await message.answer(f"Привет, {message.from_user.full_name}!")
-    await message.answer(texts["greeting_msg"], reply_markup=await create_agreement_keyboard())
+    photo_greetings = open("data/pictures/greetings.jpg", "rb")
+    await message.answer_photo(photo=photo_greetings, reply_markup=await create_agreement_keyboard())
+    photo_greetings.close()
     await StateGroup.in_quiz.set()

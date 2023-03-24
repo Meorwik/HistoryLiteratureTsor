@@ -76,5 +76,7 @@ async def handle_quiz_callbacks(call: types.CallbackQuery, state: FSMContext):
         else:
             await call.message.delete()
             await rate_student(call.message, data["points"])
-            await call.message.answer(texts["second_part_intro"], reply_markup=await finished_exercise())
+            second_part_photo = open("data/pictures/second_part.jpg", "rb")
+            await call.message.answer_photo(photo=second_part_photo, caption=texts["second_part_intro"], reply_markup=await finished_exercise())
             await StateGroup.in_learning.set()
+            second_part_photo.close()

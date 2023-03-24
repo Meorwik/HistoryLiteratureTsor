@@ -148,12 +148,6 @@ stimfal = \
 Из Стимфала происходил стратег Аркадского союза Эней. 
     """
 
-greeting_msg = \
-    """
-Меня зовут Папирус. Я являюсь ботом, который поможет тебе в изучении мифологии Древней Греции.\n
-Приглашаю тебя в путешествие!
-    """
-
 quiz_introduction = \
     """
 Думаю, что ты знаешь одного из известных героев Греции. 
@@ -161,18 +155,20 @@ quiz_introduction = \
 Ответь на вопросы викторины и узнай, насколько хорошо тебе известен этот герой.
     """
 
+second_part_intro = \
+    """
+А сейчас мы переходим к следующей части урока\n
+Если у тебя не получилось, ниже ты сможешь ознакомится с дополнительной информацией.
+https://learningapps.org/20806237\n
+Пройди задание по этой ссылке и нажми на кнопку по завершению.
+    """
+
+
 learn_phase_start = "А сейчас давай познакомимся с историей городов Древней Греции!"
 
 additional_info = \
     """
 А теперь познакомимся с ниже приведенными источниками:\n
-    """
-
-second_part_intro = \
-    """
-    А сейчас мы переходим к следующей части урока\n
-    https://learningapps.org/20806237\n
-    Пройди задание по этой ссылке и нажми на кнопку по завершению.
     """
 
 stimfal_source = "http://wiki-org.ru/wiki/%D0%A1%D1%82%D0%B8%D0%BC%D1%84%D0%B0%D0%BB_(%D0%B3%D0%BE%D1%80%D0%BE%D0%B4)"
@@ -211,7 +207,6 @@ texts = \
         "quiz_introduction": quiz_introduction,
         "learn_phase_start": learn_phase_start,
         "additional_info": additional_info,
-        "greeting_msg": greeting_msg,
         "second_part_intro": second_part_intro,
         "bad_rating": bad_rating,
         "good_rating": good_rating
