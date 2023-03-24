@@ -21,6 +21,7 @@ async def start_quiz(message: types.Message):
     await send_city_info(message, "arcadia")
     await send_city_info(message, "stimfal")
     await send_city_info(message, "lerna")
+    await send_city_info(message, "nemeya")
     await message.answer(texts['additional_info'], reply_markup=await finished_exercise())
     await message.answer("На этом наш урок закончен, большое спасибо за участие !")
 
