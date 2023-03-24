@@ -30,12 +30,14 @@ async def message_filter(message: types.Message):
 
 @dp.message_handler(message_filter, state=StateGroup.in_quiz)
 async def start_quiz(message: types.Message, state: FSMContext):
-    await message.answer(texts["quiz_introduction"])
+    photo = open("data/pictures/quize_start.jpg","rb")
+    await message.answer_photo(photo=photo)
     await message.answer\
         (
             text=quiz_questions["1"]["question"],
             reply_markup=KeyboardCreator().create_keyboard(quiz_questions["1"])
         )
+    photo.close()
 
     async with state.proxy() as data:
         data["points"] = 0

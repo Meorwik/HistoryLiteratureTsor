@@ -148,12 +148,6 @@ stimfal = \
 Из Стимфала происходил стратег Аркадского союза Эней. 
     """
 
-quiz_introduction = \
-    """
-Думаю, что ты знаешь одного из известных героев Греции. 
-Конечно, ты понял(а), что речь идёт о Геракле. 
-Ответь на вопросы викторины и узнай, насколько хорошо тебе известен этот герой.
-    """
 
 second_part_intro = \
     """
@@ -163,6 +157,12 @@ https://learningapps.org/20806237\n
 Пройди задание по этой ссылке и нажми на кнопку по завершению.
     """
 
+greeting_msg = \
+    """
+Меня зовут Папирус. 
+Я являюсь ботом, который поможет тебе в изучении мифологии Древней Греции. 
+Приглашаю тебя в путешествие!
+    """
 
 learn_phase_start = "А сейчас давай познакомимся с историей городов Древней Греции!"
 
@@ -204,9 +204,9 @@ greece_cities_info = \
 
 texts = \
     {
-        "quiz_introduction": quiz_introduction,
         "learn_phase_start": learn_phase_start,
         "additional_info": additional_info,
+        "greeting_msg": greeting_msg,
         "second_part_intro": second_part_intro,
         "bad_rating": bad_rating,
         "good_rating": good_rating
