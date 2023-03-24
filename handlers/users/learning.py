@@ -18,7 +18,9 @@ async def send_city_info(message: types.Message, city_name):
 
 @dp.message_handler(messages_filter, state=StateGroup.in_learning)
 async def start_quiz(message: types.Message):
-    await message.answer(texts['learn_phase_start'])
+    photo = open("data/pictures/city_intro.jpg", "rb")
+    await message.answer_photo(photo=photo)
+    photo.close()
     await send_city_info(message, "arcadia")
     await send_city_info(message, "stimfal")
     await send_city_info(message, "lerna")

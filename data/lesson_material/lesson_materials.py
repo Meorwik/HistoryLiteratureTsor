@@ -164,11 +164,9 @@ greeting_msg = \
 Приглашаю тебя в путешествие!
     """
 
-learn_phase_start = "А сейчас давай познакомимся с историей городов Древней Греции!"
-
 additional_info = \
     """
-А теперь познакомимся с ниже приведенными источниками:\n
+Заканчивая наше путешествие по мифам, предлагаю тебе дополнительный материал по нашей теме.\n
     """
 
 stimfal_source = "http://wiki-org.ru/wiki/%D0%A1%D1%82%D0%B8%D0%BC%D1%84%D0%B0%D0%BB_(%D0%B3%D0%BE%D1%80%D0%BE%D0%B4)"
@@ -204,7 +202,6 @@ greece_cities_info = \
 
 texts = \
     {
-        "learn_phase_start": learn_phase_start,
         "additional_info": additional_info,
         "greeting_msg": greeting_msg,
         "second_part_intro": second_part_intro,
