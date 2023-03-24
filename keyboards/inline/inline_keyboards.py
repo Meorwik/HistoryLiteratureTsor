@@ -1,4 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from data.lesson_material.lesson_materials import city_sources
 from random import shuffle
 from aiogram import types
 
@@ -36,3 +37,8 @@ class KeyboardCreator:
         self.__all_buttons += self.__create_incorrect_answer_buttons()
         shuffle(self.__all_buttons)
         return self.__keyboard.add(*self.__all_buttons)
+
+
+def create_inline_source_button(name):
+    button = InlineKeyboardButton("Больше информации -->", url=city_sources[name])
+    return InlineKeyboardMarkup(row_width=1).add(button)
